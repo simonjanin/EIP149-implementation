@@ -44,7 +44,11 @@ contract audit_guarantee {
     uint MIN_BONDING_TIME = 1; // minimum number of blocks an auditor has to be bonded
 
     function add_auditor(string name, uint depositEndBlock) {
-        if (depositEndBlock <= block.number + MIN_BONDING_TIME) throw;
+        //uint maxTime = block.number + MIN_BONDING_TIME;
+        
+        if (depositEndBlock <= block.number) {
+            throw;
+        }
         
         auditorsList[msg.sender].auditorName = name;
         auditorsList[msg.sender].depositAmount = msg.value;
