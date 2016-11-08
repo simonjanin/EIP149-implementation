@@ -39,14 +39,14 @@ contract audit_guarantee {
     }
     
     mapping (address => audits) contractsList;
-    mapping (address => auditor) auditersList;
+    mapping (address => auditor) auditorsList;
     
     uint MIN_BONDING_TIME = 1; // minimum number of blocks an auditor has to be bonded
 
     function add_auditor(string name, uint depositEndBlock) {
         if (depositEndBlock <= block.number + MIN_BONDING_TIME) throw;
         
-        auditorsList[msg.sender].auditerName = name;
+        auditorsList[msg.sender].auditorName = name;
         auditorsList[msg.sender].depositAmount = msg.value;
         auditorsList[msg.sender].depositStartBlock = block.number;
         auditorsList[msg.sender].depositEndBlock = depositEndBlock;
